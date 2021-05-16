@@ -1,1 +1,44 @@
-<p>congress-members works!</p>
+<div class="container">
+    <mat-form-field>
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+    </mat-form-field>
+
+    <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" matSort>
+
+            <!-- ID Column -->
+            <ng-container matColumnDef="title">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Title </th>
+                <td [ngClass]="{'republican': row.party === 'R', 'democrat': row.party==='D', 'otherParty': row.party !== 'D' && row.party !=='R' }" mat-cell *matCellDef="let row"> {{row.title}} </td>
+            </ng-container>
+
+            <!-- Progress Column -->
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+                    <td [ngClass]="{'republican': row.party === 'R', 'democrat': row.party==='D', 'otherParty': row.party !== 'D' && row.party !=='R' }" mat-cell *matCellDef="let row"> {{row.first_name + ' ' + row.last_name}} </td>
+            </ng-container>
+
+            <!-- Color Column -->
+            <ng-container matColumnDef="party">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Party </th>
+                <td [ngClass]="{'republican': row.party === 'R', 'democrat': row.party==='D', 'otherParty': row.party !== 'D' && row.party !=='R' }" mat-cell *matCellDef="let row"> {{row.party}} </td>
+            </ng-container>
+            <!-- Color Column -->
+            <ng-container matColumnDef="state">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> State </th>
+                <td [ngClass]="{'republican': row.party === 'R', 'democrat': row.party==='D', 'otherParty': row.party !== 'D' && row.party !=='R' }" mat-cell *matCellDef="let row"> {{row.state}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+            <!-- Row shown when there is no matching data. -->
+            <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+            </tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[7, 10, 25, 100]"></mat-paginator>
+    </div>
+</div>

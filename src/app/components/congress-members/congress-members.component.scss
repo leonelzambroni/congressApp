@@ -1,0 +1,39 @@
+@import '../../../assets/styles/variables.scss';
+
+.container{
+    width:100%;
+    margin-top:20px;
+    text-align:center;
+}
+
+table{
+    min-width: 80%;
+    margin: auto;
+    text-align: left;
+}
+
+.mat-table{
+    width: 100%;
+    background-color: rgba(246, 237, 218, 0.8);
+}
+mat-paginator{
+    background-color: rgba(246, 237, 218, 0.8);
+}
+
+.mat-header-cell{
+    color:black;
+    font-size:large;
+    font-weight: bold;
+}
+
+.republican{
+    background-color: $republicanRed;
+}
+
+.democrat{
+    background-color: $democratBlue;
+}
+
+.otherParty{
+    background-color: $otherOrange;
+}
