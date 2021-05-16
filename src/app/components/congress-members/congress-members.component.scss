@@ -6,6 +6,22 @@
     text-align:center;
 }
 
+
+::ng-deep .mat-form-field-underline{
+    background-color: $congressBlue !important;
+}
+::ng-deep .mat-form-field-ripple{
+    background-color: $congressBlue !important;
+}
+
+::ng-deep .mat-form-field-label{
+    color: $congressBlue !important;
+}
+::ng-deep .mat-form-field-infix{
+    color: $congressBlue !important;
+}
+
+
 table{
     min-width: 80%;
     margin: auto;
@@ -16,8 +32,16 @@ table{
     width: 100%;
     background-color: rgba(246, 237, 218, 0.8);
 }
-mat-paginator{
+::ng-deep .mat-paginator{
     background-color: rgba(246, 237, 218, 0.8);
+}
+.mat-cell{
+    font-weight: bold;
+}
+
+.mat-row:hover{
+    cursor: pointer;
+    box-shadow: inset 0 0 0 5px #3b3b3b;
 }
 
 .mat-header-cell{

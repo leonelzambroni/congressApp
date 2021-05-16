@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { CongressService } from 'src/app/services/congress/congress.service';
 
 @Component({
@@ -17,7 +18,7 @@ export class CongressMembersComponent implements OnInit {
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator | undefined;
 
-  constructor(private congressService: CongressService,) { }
+  constructor(private congressService: CongressService,private router: Router) { }
 
   ngOnInit(): void {
     this.getAllCongressmen();
@@ -49,8 +50,8 @@ export class CongressMembersComponent implements OnInit {
     }
   }
 
-  getCongressMen() {
-    this.congressInfo
+  getRow(row: any) {
+    this.router.navigateByUrl(`congressman-detail/${row.id}`)
   }
 
 }
