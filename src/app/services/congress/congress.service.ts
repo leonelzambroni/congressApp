@@ -21,11 +21,12 @@ export class CongressService {
 
   constructor(private _http: HttpClient) { }
 
-  getAllCongressmen() {
-    return this._http.get<any>(this.baseUrl + '/116/senate/members.json/', this.stdJsonOptions);
+  getAllCongressmen(name:string,number:string) {
+    return this._http.get<any>(this.baseUrl + '/' + number + '/' + name +'/members.json/', this.stdJsonOptions);
   }
 
-  getCongressmen(){
-    
+  getCongressman(id: string){
+    return this._http.get<any>(this.baseUrl + '/members/' + id + '.json', this.stdJsonOptions);
+
   }
 }
