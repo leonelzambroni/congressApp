@@ -9,6 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from 'src/shared/material.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { InterceptorModule } from 'src/shared/interceptors.module';
 
 @NgModule({
   declarations: [
@@ -24,9 +25,12 @@ import { ReactiveFormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     HttpClientModule,
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    InterceptorModule,
   ],
-  providers: [],
+  providers: [
+    InterceptorModule,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
