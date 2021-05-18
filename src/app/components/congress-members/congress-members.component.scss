@@ -4,23 +4,8 @@
     width:100%;
     margin-top:20px;
     text-align:center;
+    height: 80%;
 }
-
-
-::ng-deep .mat-form-field-underline{
-    background-color: $congressBlue !important;
-}
-::ng-deep .mat-form-field-ripple{
-    background-color: $congressBlue !important;
-}
-
-::ng-deep .mat-form-field-label{
-    color: $congressBlue !important;
-}
-::ng-deep .mat-form-field-infix{
-    color: $congressBlue !important;
-}
-
 
 table{
     min-width: 80%;
@@ -28,16 +13,48 @@ table{
     text-align: left;
 }
 
+.mat-column-party {
+    margin-left: 10px;
+}
+
+.table-row {
+    border: 1px solid #e7e7e7;
+    font-weight: bold;
+    height: 70px !important;
+}
+
+.spinner-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+}
+
+
+.overlay{
+    height:100vh;
+    width:100%;
+    background-color:rgba(0, 0, 0, 0.286);
+    z-index:    10;
+    top:        0; 
+    left:       0; 
+    position:   fixed;
+  }
+
 .mat-table{
     width: 100%;
     background-color: rgba(246, 237, 218, 0.8);
 }
-::ng-deep .mat-paginator{
-    background-color: rgba(246, 237, 218, 0.8);
-}
+
 .mat-cell{
+    padding: 0 8px 8px 0;
+    width: 25%;
     font-weight: bold;
 }
+
+
 
 .mat-row:hover{
     cursor: pointer;
@@ -60,4 +77,34 @@ table{
 
 .otherParty{
     background-color: $otherOrange;
+}
+
+::ng-deep .mat-paginator{
+    background-color: rgba(246, 237, 218, 0.8);
+}
+
+::ng-deep.mat-progress-spinner circle, .mat-spinner circle {
+    stroke: $congressBlue;
+}
+::ng-deep .mat-form-field-underline{
+    background-color: $congressBlue !important;
+}
+::ng-deep .mat-form-field-ripple{
+    background-color: $congressBlue !important;
+}
+
+::ng-deep .mat-form-field-label{
+    color: $congressBlue !important;
+}
+::ng-deep .mat-form-field-infix{
+    color: $congressBlue !important;
+}
+
+@media (max-height:899px){
+    .container{
+        width:100%;
+        margin-top:20px;
+        text-align:center;
+        height: 120%;
+    }
 }
