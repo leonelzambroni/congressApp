@@ -5,7 +5,22 @@
     background-color:$congressBlue;
 }
 
+.header-text{
+    text-align: center;
+    justify-content: center;
+    color:$congressWhite;
+}
 
-img:hover{
+.header-text:hover{
+    cursor: pointer;
+}
+.img:hover{
     cursor:pointer;
+}
+
+@media (max-width: 599px){
+    img{
+        width: 60px;
+        height: 60px;
+    }
 }
