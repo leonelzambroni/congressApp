@@ -1,0 +1,187 @@
+@import '../../../assets/styles/variables.scss';
+
+.container{
+    width:100%;
+    margin-top:20px;
+    text-align:center;
+    height: 80%;
+}
+
+#last-updated{
+    float:right;
+    color:grey;
+    opacity: 30%;
+}
+
+
+table{
+    min-width: 20%;
+    margin: auto;
+    text-align: left;
+}
+
+.table-container{
+    min-width: 80%;
+    width: 80%;
+    margin: auto;
+
+}
+
+.mat-column-party {
+    margin-left: 10px;
+}
+
+.table-row {
+    border: 1px solid #e7e7e7;
+    font-weight: bold;
+    height: 70px !important;
+}
+
+.roles{
+    font-weight: bold;
+}
+
+.spinner-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+}
+
+
+.overlay{
+    height:100vh;
+    width:100%;
+    background-color:rgba(0, 0, 0, 0.286);
+    z-index:    10;
+    top:        0; 
+    left:       0; 
+    position:   fixed;
+  }
+
+.mat-table{
+    width: 100%;
+    background-color: rgba(246, 237, 218, 0.8);
+}
+
+.mat-cell{
+    font-weight: bold;
+}
+
+.mat-row {
+}
+  
+.mat-cell {
+    padding: 0 8px 8px 0;
+    width: 25%;
+}
+
+
+
+
+.mat-header-cell{
+    color:black;
+    font-size:large;
+    font-weight: bold;
+    
+}
+
+.active{
+    background-color: green;
+    border-radius: 5px;
+}
+
+.inactive{
+    background-color: red;
+    border-radius: 5px;
+}
+
+.wrapper {
+    width: 100%;
+    align-items: center;
+    float:left;
+}
+img{
+    width: 50px;
+    height: 50px;
+    padding-right: 50px;
+}
+
+#col1{
+    display: flexbox;
+    align-items: center;
+    padding-left: 10%;
+    text-align: left;
+    float: left;
+}
+#col2{
+    display: flexbox;
+    align-items: center;
+    text-align:right;
+    padding-right: 10%;
+}
+
+
+
+.social-media{
+    float:center;
+    padding-left: 50px;
+}
+.mat-column-title{
+    text-align: center;
+}
+.mat-column-service{
+    text-align: center;
+}
+.mat-column-party{
+    text-align: center;
+}
+
+.mat-column-bills-sponsored{
+    text-align: center;
+}
+.title{
+    font-weight: bolder;
+}
+::ng-deep .mat-paginator{
+    background-color: rgba(246, 237, 218, 0.8);
+}
+
+::ng-deep.mat-progress-spinner circle, .mat-spinner circle {
+    stroke: $congressBlue;
+}
+::ng-deep .mat-form-field-underline{
+    background-color: $congressBlue !important;
+}
+::ng-deep .mat-form-field-ripple{
+    background-color: $congressBlue !important;
+}
+
+::ng-deep .mat-form-field-label{
+    color: $congressBlue !important;
+}
+::ng-deep .mat-form-field-infix{
+    color: $congressBlue !important;
+}
+
+@media (max-height:899px){
+    .container{
+        width:100%;
+        margin-top:20px;
+        text-align:center;
+        height: 120%;
+    }
+}
+
+@media (max-width: 600px){
+    
+    #col2{
+        display: flexbox;
+        align-items: center;
+        text-align:left;
+        padding-left:10%;
+    }
+}
+
