@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormGroup, Validators } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CongressService } from 'src/app/services/congress/congress.service';
+
 
 @Component({
   selector: 'app-member-details',
@@ -35,7 +35,8 @@ export class MemberDetailsComponent implements OnInit {
 
 
 
-  constructor(private congressService: CongressService, private activatedRouter: ActivatedRoute) {
+  constructor(private congressService: CongressService,
+    private activatedRouter: ActivatedRoute, private router: Router) {
     this.activatedRouter.params.subscribe(
       params => {
         this.getCongressman(params['id']);
@@ -110,13 +111,13 @@ export class MemberDetailsComponent implements OnInit {
       this.inOffice = "Service Ended";
     }
 
-    if(this.congressman[0].current_party == "D"){
+    if (this.congressman[0].current_party == "D") {
       this.currentParty = "Democrat";
     }
-    else if(this.congressman[0].current_party == "R"){
+    else if (this.congressman[0].current_party == "R") {
       this.currentParty = "Republic";
     }
-    else{
+    else {
       this.currentParty = this.congressman[0].current_party;
     }
 
@@ -138,5 +139,9 @@ export class MemberDetailsComponent implements OnInit {
     // this.roles = ;
 
     this.loading = false;
+  }
+
+  back(){
+    this.router.navigate(['/']);
   }
 }
