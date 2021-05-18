@@ -54,24 +54,8 @@ table{
     font-weight: bold;
 }
 
-.filter-row{
-    position: relative
-}
-.normal-filter{
-    display:inline-block;
-    text-align: center;
-}
-
-.advanced-filters{
-    display:inline-block;
-    text-align: center;
-}
-
 .button{
-    margin-left: 5px;
-    display:inline-block;
-    position: absolute;
-
+    margin-bottom: 5px;
 }
 
 button.mat-raised-button{
@@ -130,4 +114,28 @@ button.mat-raised-button{
         text-align:center;
         height: 120%;
     }
+    
+}
+
+@media (min-width:500px){
+    .filter-row{
+        position: relative
+    }
+    .normal-filter{
+        display:inline-block;
+        text-align: center;
+    }
+    
+    .advanced-filters{
+        display:inline-block;
+        text-align: center;
+    }
+    
+    .button{
+        margin-left: 5px;
+        display:inline-block;
+        position: absolute;
+    
+    }
+    
 }
