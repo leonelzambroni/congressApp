@@ -1,0 +1,32 @@
+@import '/src/assets/styles/variables.scss';
+footer{
+    display:flex;
+    flex: 0;
+    justify-content: center;
+    align-items: center;
+    height:80px;
+    color: grey;
+    width:100%;
+    
+}
+
+.wrapper {
+    width: 300px;
+    align-items: center;
+    float:left;
+    padding-left: 20px;
+}
+img{
+    padding-right: 5px;
+}
+
+.text{
+    list-style: none; 
+    padding: 0;
+    padding-top:15px;
+    padding-bottom: 5px;
+}
+.social-media{
+    float:center;
+    padding-left: 70px;
+}
