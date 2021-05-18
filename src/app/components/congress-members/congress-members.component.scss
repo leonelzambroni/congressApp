@@ -54,7 +54,30 @@ table{
     font-weight: bold;
 }
 
+.filter-row{
+    position: relative
+}
+.normal-filter{
+    display:inline-block;
+    text-align: center;
+}
 
+.advanced-filters{
+    display:inline-block;
+    text-align: center;
+}
+
+.button{
+    margin-left: 5px;
+    display:inline-block;
+    position: absolute;
+
+}
+
+button.mat-raised-button{
+    background-color: $congressWhite;
+    border: black;
+  }
 
 .mat-row:hover{
     cursor: pointer;

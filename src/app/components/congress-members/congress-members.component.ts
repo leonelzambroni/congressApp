@@ -3,7 +3,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { CongressService } from 'src/app/services/congress/congress.service';
-import { FormControl } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { formatDate } from '@angular/common';
 
 interface chamberGroup {
   name: string;
@@ -34,22 +35,47 @@ export class CongressMembersComponent implements OnInit {
   congressInfo = [];
   displayedColumns: string[] = ['title', 'name', 'party', 'state'];
   dataSource = new MatTableDataSource<any>([]);
-  filterObj = {};
+  advancedFilter: boolean = false;
+
+  // public searchForm = this.fb.group({
+  //   name: ['', [Validators.required]],
+  //   party: ['', Validators.required],
+  //   birth: ['', Validators.required]
+  // });
+
+  // public name = '';
+  // public party = '';
+  // public birth = '';.
+
+  public searchForm: FormGroup | undefined;
+  public name = '';
+  public party = '';
+  public birth = '';
+  // public inOffice = '';
+
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator | undefined;
 
-  constructor(private congressService: CongressService, private router: Router, private changeDetectorRefs: ChangeDetectorRef) { }
+  constructor(private congressService: CongressService,
+    private router: Router, private fb: FormBuilder) {
 
-  ngOnInit(): void {
-    this.getAllCongressmen(this.chamberGroups[0].name, this.chamberGroups[0].congressNumber[0]);
   }
 
-  getAllCongressmen(name: string, number: string) {
+  ngOnInit(): void {
+    this.searchFormInit()
+    this.getAllCongressmen(this.chamberGroups[0].name, this.chamberGroups[0].congressNumber[0]);
+
+
+
+  }
+
+    getAllCongressmen(name: string, number: string) {
     this.loading = true;
     this.dataSource = new MatTableDataSource<any>([])
     this.congressService.getAllCongressmen(name, number).subscribe(
       res => {
         this.dataSource = new MatTableDataSource<any>(res.results[0].members);
+        this.searchFormInit();
         if (this.paginator) {
           this.dataSource.paginator = this.paginator;
         }
@@ -72,19 +98,94 @@ export class CongressMembersComponent implements OnInit {
     }
   }
 
-  applyAdvancedFilter(key: string, filterValue?: string) {
-    this.filterObj = {
-      value: filterValue?.trim().toLowerCase(),
-      key: key
-    }
-    if (filterValue) {
-      this.dataSource.filter = filterValue;
-    }
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
+  searchFormInit() {
+    this.searchForm = new FormGroup({
+      name: new FormControl('', Validators.pattern('^[a-zA-Z ]+$')),
+      party: new FormControl('', Validators.pattern('^[a-zA-Z ]+$')),
+      birth: new FormControl(''),
+      // inOffice: new FormControl('')
+    });
   }
 
+  /* this method well be called for each row in table  */
+  getFilterPredicate() {
+    return (row: any, filters: string) => {
+      // split string per '$' to array
+      const filterArray = filters.split('$');
+      const birth = filterArray[0];
+      const party = filterArray[1];
+      const name = filterArray[2];
+      // const inOffice = filterArray[3];
+
+      const matchFilter = [];
+
+      // Fetch data from row
+      const columnBirth = row.date_of_birth;
+      const columnParty = row.party;
+      const columnName = row.first_name + ' ' + row.last_name;
+      // const columnInOffice = row.in_office;
+
+      // verify fetching data by our searching values
+      const customFilterB = columnBirth.toLowerCase().includes(birth);
+      const customFilterP = columnParty.toLowerCase().includes(party);
+      const customFilterN = columnName.toLowerCase().includes(name);
+      // const customFilterIO = columnInOffice.toString().toLowerCase().includes(inOffice)
+
+      // push boolean values into array
+      matchFilter.push(customFilterB);
+      matchFilter.push(customFilterP);
+      matchFilter.push(customFilterN);
+      // matchFilter.push(customFilterIO);
+
+      // return true if all values in array is true
+      // else return false
+      return matchFilter.every(Boolean);
+    };
+  }
+
+  toggleAdvancedFilters() {
+    this.advancedFilter = !this.advancedFilter;
+    if (this.advancedFilter == true) {
+      this.dataSource.filterPredicate = this.getFilterPredicate();
+    }
+    else {
+      this.dataSource.filterPredicate =
+        function (data, filter) {
+          var dataStr = Object.keys(data).reduce(function (currentTerm, key) {
+            return currentTerm + data[key] + '◬';
+          }, '').toLowerCase();
+          var transformedFilter = filter.trim().toLowerCase();
+          return dataStr.indexOf(transformedFilter) != -1;
+
+        };
+    }
+    this.dataSource.filter = "";
+
+
+  }
+
+  applyAdvancedFilter() {
+    
+    if (this.searchForm) {
+      const date = this.searchForm.get('birth')!.value;
+      const p = this.searchForm.get('party')!.value;
+      const n = this.searchForm.get('name')!.value;
+      // const io = this.searchForm.get('inOffice')!.value;
+
+      this.birth = (date === null || date === '') ? '' : date.toDateString();
+      if (this.birth != '') {
+        this.birth = formatDate(this.birth, 'yyyy-MM-dd', 'en_US')
+      }
+      this.name = n === null ? '' : n;
+      this.party = p === null ? '' : p;
+      // this.inOffice = io === null ? '' : io;
+
+      // create string of our searching values and split if by '$'
+      const filterValue = this.birth + '$' + this.party + '$' + this.name;
+      // const filterValue = this.birth + '$' + this.party + '$' + this.name + '$' + this.inOffice;
+      this.dataSource.filter = filterValue.trim().toLowerCase();
+    }
+  }
 
   getRow(row: any) {
     this.router.navigateByUrl(`congressman-detail/${row.id}`)
