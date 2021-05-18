@@ -10,7 +10,7 @@ import { CongressService } from 'src/app/services/congress/congress.service';
   templateUrl: './member-details.component.html',
   styleUrls: ['./member-details.component.scss']
 })
-export class MemberDetailsComponent implements OnInit {
+export class MemberDetailsComponent{
 
   loading: boolean = false;
 
@@ -44,10 +44,6 @@ export class MemberDetailsComponent implements OnInit {
     )
   }
 
-  ngOnInit(): void {
-
-
-  }
 
 
   getCongressman(id: string) {
@@ -141,7 +137,7 @@ export class MemberDetailsComponent implements OnInit {
     this.loading = false;
   }
 
-  back(){
+  back() {
     this.router.navigate(['/']);
   }
 }

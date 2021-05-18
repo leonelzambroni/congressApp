@@ -6,14 +6,13 @@ import { Router } from '@angular/router';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent{
 
   constructor(private router: Router) { }
 
-  ngOnInit(): void {
-  }
+ 
 
-  public goHome(){
+  public goHome() {
     this.router.navigateByUrl('/congressmen');
   }
 
