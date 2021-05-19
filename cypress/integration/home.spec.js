@@ -26,7 +26,7 @@ describe('CongressMembers', () => {
     })
 
     it('should click option', () => {
-        cy.get('mat-select[formcontrolname="select"]').click();
+        cy.get('mat-select[formcontrolname="congress"]').click();
         cy.get('mat-option').contains('117').click();
 
     })
