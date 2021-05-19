@@ -86,6 +86,7 @@ button.mat-raised-button{
     background-color: $otherOrange;
 }
 
+
 ::ng-deep .mat-paginator{
     background-color: rgba(246, 237, 218, 0.8);
 }
@@ -117,7 +118,9 @@ button.mat-raised-button{
     
 }
 
-@media (min-width:500px){
+
+
+@media (min-width:900px){
     .filter-row{
         position: relative
     }

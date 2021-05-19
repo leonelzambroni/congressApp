@@ -1,9 +1,9 @@
-import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatTable, MatTableDataSource } from '@angular/material/table';
+import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { CongressService } from 'src/app/services/congress/congress.service';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { formatDate } from '@angular/common';
 
 interface chamberGroup {
@@ -37,27 +37,15 @@ export class CongressMembersComponent implements OnInit {
   dataSource = new MatTableDataSource<any>([]);
   advancedFilter: boolean = false;
 
-  // public searchForm = this.fb.group({
-  //   name: ['', [Validators.required]],
-  //   party: ['', Validators.required],
-  //   birth: ['', Validators.required]
-  // });
-
-  // public name = '';
-  // public party = '';
-  // public birth = '';.
-
   public searchForm: FormGroup | undefined;
   public name = '';
   public party = '';
   public birth = '';
-  // public inOffice = '';
-
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator | undefined;
 
   constructor(private congressService: CongressService,
-    private router: Router, private fb: FormBuilder) {
+    private router: Router) {
 
   }
 
@@ -103,7 +91,6 @@ export class CongressMembersComponent implements OnInit {
       name: new FormControl('', Validators.pattern('^[a-zA-Z ]+$')),
       party: new FormControl('', Validators.pattern('^[a-zA-Z ]+$')),
       birth: new FormControl(''),
-      // inOffice: new FormControl('')
     });
   }
 
@@ -115,7 +102,6 @@ export class CongressMembersComponent implements OnInit {
       const birth = filterArray[0];
       const party = filterArray[1];
       const name = filterArray[2];
-      // const inOffice = filterArray[3];
 
       const matchFilter = [];
 
@@ -123,19 +109,16 @@ export class CongressMembersComponent implements OnInit {
       const columnBirth = row.date_of_birth;
       const columnParty = row.party;
       const columnName = row.first_name + ' ' + row.last_name;
-      // const columnInOffice = row.in_office;
 
       // verify fetching data by our searching values
       const customFilterB = columnBirth.toLowerCase().includes(birth);
       const customFilterP = columnParty.toLowerCase().includes(party);
       const customFilterN = columnName.toLowerCase().includes(name);
-      // const customFilterIO = columnInOffice.toString().toLowerCase().includes(inOffice)
 
       // push boolean values into array
       matchFilter.push(customFilterB);
       matchFilter.push(customFilterP);
       matchFilter.push(customFilterN);
-      // matchFilter.push(customFilterIO);
 
       // return true if all values in array is true
       // else return false
@@ -170,7 +153,6 @@ export class CongressMembersComponent implements OnInit {
       const date = this.searchForm.get('birth')!.value;
       const p = this.searchForm.get('party')!.value;
       const n = this.searchForm.get('name')!.value;
-      // const io = this.searchForm.get('inOffice')!.value;
 
       this.birth = (date === null || date === '') ? '' : date.toDateString();
       if (this.birth != '') {
@@ -178,11 +160,9 @@ export class CongressMembersComponent implements OnInit {
       }
       this.name = n === null ? '' : n;
       this.party = p === null ? '' : p;
-      // this.inOffice = io === null ? '' : io;
 
       // create string of our searching values and split if by '$'
       const filterValue = this.birth + '$' + this.party + '$' + this.name;
-      // const filterValue = this.birth + '$' + this.party + '$' + this.name + '$' + this.inOffice;
       this.dataSource.filter = filterValue.trim().toLowerCase();
     }
   }
