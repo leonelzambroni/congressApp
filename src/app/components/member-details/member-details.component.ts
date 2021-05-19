@@ -11,7 +11,6 @@ import { CongressService } from 'src/app/services/congress/congress.service';
   styleUrls: ['./member-details.component.scss']
 })
 export class MemberDetailsComponent{
-
   loading: boolean = false;
 
   congressman: any[] = [];
@@ -33,8 +32,6 @@ export class MemberDetailsComponent{
   dataSource = new MatTableDataSource<any>([]);
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator | undefined;
 
-
-
   constructor(private congressService: CongressService,
     private activatedRouter: ActivatedRoute, private router: Router) {
     this.activatedRouter.params.subscribe(
@@ -43,8 +40,6 @@ export class MemberDetailsComponent{
       }
     )
   }
-
-
 
   getCongressman(id: string) {
     this.loading = true;

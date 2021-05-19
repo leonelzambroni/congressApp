@@ -1,4 +1,7 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ActivatedRoute, Router } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { MemberDetailsComponent } from './member-details.component';
 
@@ -8,9 +11,11 @@ describe('MemberDetailComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MemberDetailsComponent ]
+      declarations: [MemberDetailsComponent],
+      imports: [HttpClientModule, RouterTestingModule],
+      providers: []
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
@@ -18,6 +23,9 @@ describe('MemberDetailComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
+  afterEach(() =>{
+    fixture.destroy();
+  })
 
   it('should create', () => {
     expect(component).toBeTruthy();

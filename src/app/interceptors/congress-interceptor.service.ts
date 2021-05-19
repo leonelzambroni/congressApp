@@ -39,7 +39,6 @@ export class CongressInterceptorService implements HttpInterceptor {
   errorHandler(error: HttpErrorResponse) {
 
     console.log('There was an error');
-    console.log('logged in log file');
     console.warn(error);
     return throwError('');
 

@@ -21,13 +21,11 @@
                 <h2 id="birth">
                     <span class="title">Date of Birth: </span> {{dateOfBirth | date: 'MM/dd/yyyy'}}
                 </h2>
-                <h2 id="inOffice" [ngClass]="{'active': inOffice == 'true', 'inactive': inOffice == 'false'}">
+                <h2 id="inOffice">
                     <span class="title">Active: </span> {{inOffice}}
                 </h2>
 
-                <!-- <label id="last-updated">
-                {{lastUpdated | date: 'medium'}}
-            </label> -->
+                
             </div>
 
             <div id="col2">
@@ -41,9 +39,7 @@
                     <span class="title">Most recent Vote: </span> {{mostRecentVote | date: 'MM/dd/yyyy'}}
                 </h2>
 
-                <!-- <label id="last-updated">
-                {{lastUpdated | date: 'medium'}}
-            </label> -->
+                
             </div>
 
         </div>
@@ -51,11 +47,7 @@
         <div class="row table-container">
             <h2 class="roles">Roles</h2>
             <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-
-                <!--- Note that these columns can be defined in any order.
-        The actual rendered columns are set as a property on the row definition" -->
-
-                <!-- Position Column -->
+               
                 <ng-container matColumnDef="title">
                     <th mat-header-cell *matHeaderCellDef> Position </th>
                     <td mat-cell *matCellDef="let role"> {{role.short_title + ' ' + role.chamber + ' ' + role.congress}}
@@ -68,13 +60,11 @@
                         (role.end_date | date: 'MM/dd/yyyy')}} </td>
                 </ng-container>
 
-                <!-- Name Column -->
                 <ng-container matColumnDef="party">
                     <th mat-header-cell *matHeaderCellDef> Party </th>
                     <td mat-cell *matCellDef="let role"> {{role.party}} </td>
                 </ng-container>
 
-                <!-- Weight Column -->
                 <ng-container matColumnDef="bills-sponsored">
                     <th mat-header-cell *matHeaderCellDef> Bills </th>
                     <td mat-cell *matCellDef="let role"> {{role.bills_sponsored }}
