@@ -2,4 +2,4 @@
 @import 'assets/styles/variables.scss';
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-color: $congressWhite;}
+body { display: flex; flex-direction: column; flex: 1; min-height: 100vh; margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-color: $congressWhite;}
