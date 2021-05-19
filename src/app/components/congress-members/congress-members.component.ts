@@ -42,6 +42,9 @@ export class CongressMembersComponent implements OnInit {
   public party = '';
   public birth = '';
 
+  public basicSearchForm: FormGroup | undefined;
+  public congress = '';
+
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator | undefined;
 
   constructor(private congressService: CongressService,
@@ -92,6 +95,9 @@ export class CongressMembersComponent implements OnInit {
       party: new FormControl('', Validators.pattern('^[a-zA-Z ]+$')),
       birth: new FormControl(''),
     });
+    this.basicSearchForm = new FormGroup({
+      congress: new FormControl('')
+    })
   }
 
   /* this method well be called for each row in table  */
